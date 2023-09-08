@@ -1,13 +1,20 @@
+log_file=/temp/expense.log
+echo installing nginx
 dnf install nginx -y
-cp expense.conf /etc/nginx/default.d/expense.conf
-systemctl enable nginx
-systemctl start nginx
+echo placing expense conf file in nginix
+cp expense.conf /etc/nginx/default.d/expense.conf >>$log_file
 
-rm -rf /usr/share/nginx/html/*
+echo removing old nginix content
+rm -rf /usr/share/nginx/html/* >>$log_file
 
-curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip
+echo download frontend code
+curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip >>$log_file
 
 cd /usr/share/nginx/html
-unzip /tmp/frontend.zip
 
-systemctl restart nginx
+echo extarcting front end code
+unzip /tmp/frontend.zip >>$log_file
+
+echo starting nginix service
+systemctl enable nginx >>$log_file
+systemctl restart nginx >>$log_file
