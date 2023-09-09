@@ -6,7 +6,7 @@ curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
 if [ $? -eq 0 ]; then
   echo -e "\e[32msuccess\e[0m"
 else
-  echo -e "\e[32mfailure\e[0m"
+  echo -e "\e[31mfailure\e[0m"
 fi
 
 echo install nodejs
@@ -14,7 +14,7 @@ dnf install nodejs -y &>>$log_file
 if [ $? -eq 0 ]; then
   echo -e "\e[32msuccess\e[0m"
   else
-    echo -e "\e[32mfailure\e[0m"
+    echo -e "\e[31mfailure\e[0m"
   fi
 
 echo copy backend service file
@@ -22,7 +22,7 @@ cp backend.service /etc/systemd/system/backend.service &>>$log_file
 if [ $? -eq 0 ]; then
   echo -e "\e[32msuccess\e[0m"
   else
-    echo -e "\e[32mfailure\e[0m"
+    echo -e "\e[31mfailure\e[0m"
   fi
 
 echo add application user
@@ -30,7 +30,7 @@ useradd expense &>>$log_file
 if [ $? -eq 0 ]; then
   echo -e "\e[32msuccess\e[0m"
   else
-    echo -e "\e[32mfailure\e[0m"
+    echo -e "\e[31mfailure\e[0m"
   fi
 
 echo clean app content
