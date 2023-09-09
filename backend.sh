@@ -11,6 +11,7 @@ if [ $? -ne 0 ]; then
  dnf install nodejs -y &>>$log_file
  stat_check
 fi
+
 echo copy backend service file
 cp backend.service /etc/systemd/system/backend.service &>>$log_file
 stat_check
